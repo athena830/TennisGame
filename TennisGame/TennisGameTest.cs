@@ -94,7 +94,7 @@ namespace TennisGame
         public void Second_player_Win()
         {
             GivenFirstPlayerScoreTimes(3);
-            GivenSecondPlayerScoreTimes(4);
+            GivenSecondPlayerScoreTimes(5);
             ScoreShouldBe("Steve Win");
         }
 

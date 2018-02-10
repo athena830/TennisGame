@@ -26,32 +26,42 @@ namespace TennisGame
 
         public string Score()
         {
-            if (isSameScore())
+            if (IsSameScore())
             {
                 if (_firstPlayerScoreTimes >= 3)
                 {
-                    return "Deuce";
+                    return Deuce();
                 }
                 return _scoreLookup[_firstPlayerScoreTimes] + " All";
             }
             else
             {
-                if (_firstPlayerScoreTimes>3 || _secondPlayerScoreTimes>3)
-                {
-                    return AdvPlayer() + (isAdv() ? " Adv" : " Win");
-                    if (isAdv())
-                    {
-                        return AdvPlayer() + " Adv";
-                    }
-                    return AdvPlayer() + " Win";
-
-                }
-                return _scoreLookup[_firstPlayerScoreTimes] + " " + _scoreLookup[_secondPlayerScoreTimes];
+                return IsReadyForWin() ? AdvState() : NormalScore();
             }
 
         }
 
-        private bool isAdv()
+        private static string Deuce()
+        {
+            return "Deuce";
+        }
+
+        private bool IsReadyForWin()
+        {
+            return _firstPlayerScoreTimes>3 || _secondPlayerScoreTimes>3;
+        }
+
+        private string NormalScore()
+        {
+            return _scoreLookup[_firstPlayerScoreTimes] + " " + _scoreLookup[_secondPlayerScoreTimes];
+        }
+
+        private string AdvState()
+        {
+            return AdvPlayer() + (IsAdv() ? " Adv" : " Win");
+        }
+
+        private bool IsAdv()
         {
             return Math.Abs(_firstPlayerScoreTimes-_secondPlayerScoreTimes)==1;
         }
@@ -64,7 +74,7 @@ namespace TennisGame
             return advPlayer;
         }
 
-        private bool isSameScore()
+        private bool IsSameScore()
         {
             return _firstPlayerScoreTimes == _secondPlayerScoreTimes;
         }
