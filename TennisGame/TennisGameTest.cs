@@ -6,7 +6,7 @@ namespace TennisGame
     [TestClass]
     public class TennisGameTest
     {
-        TennisGame tennisGame = new TennisGame();
+        TennisGame tennisGame = new TennisGame("Lulu", "Steve");
 
         [TestMethod]
         public void Love_All()
@@ -74,6 +74,29 @@ namespace TennisGame
             ScoreShouldBe("Deuce");
         }
 
+        [TestMethod]
+        public void First_player_Advantage()
+        {
+            GivenFirstPlayerScoreTimes(4);
+            GivenSecondPlayerScoreTimes(3);
+            ScoreShouldBe("Lulu Adv");
+        }
+
+        [TestMethod]
+        public void Second_player_Advantage()
+        {
+            GivenFirstPlayerScoreTimes(3);
+            GivenSecondPlayerScoreTimes(4);
+            ScoreShouldBe("Steve Adv");
+        }
+
+        [TestMethod]
+        public void Second_player_Win()
+        {
+            GivenFirstPlayerScoreTimes(3);
+            GivenSecondPlayerScoreTimes(4);
+            ScoreShouldBe("Steve Win");
+        }
 
         private void GivenFirstPlayerScoreTimes(int times)
         {

@@ -1,9 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace TennisGame
 {
     public class TennisGame
     {
+        private readonly string _firstPlayerName;
+        private readonly string _secondPlayerName;
         private int _firstPlayerScoreTimes;
         private int _secondPlayerScoreTimes;
 
@@ -14,6 +17,12 @@ namespace TennisGame
             {2, "Thirty"},
             {3, "Forty"},
         };
+
+        public TennisGame(string firstPlayerName, string secondPlayerName)
+        {
+            _firstPlayerName = firstPlayerName;
+            _secondPlayerName = secondPlayerName;
+        }
 
         public string Score()
         {
@@ -27,9 +36,32 @@ namespace TennisGame
             }
             else
             {
+                if (_firstPlayerScoreTimes>3 || _secondPlayerScoreTimes>3)
+                {
+                    return AdvPlayer() + (isAdv() ? " Adv" : " Win");
+                    if (isAdv())
+                    {
+                        return AdvPlayer() + " Adv";
+                    }
+                    return AdvPlayer() + " Win";
+
+                }
                 return _scoreLookup[_firstPlayerScoreTimes] + " " + _scoreLookup[_secondPlayerScoreTimes];
             }
 
+        }
+
+        private bool isAdv()
+        {
+            return Math.Abs(_firstPlayerScoreTimes-_secondPlayerScoreTimes)==1;
+        }
+
+        private string AdvPlayer()
+        {
+            var advPlayer = _firstPlayerScoreTimes > _secondPlayerScoreTimes
+                ? _firstPlayerName
+                : _secondPlayerName;
+            return advPlayer;
         }
 
         private bool isSameScore()
