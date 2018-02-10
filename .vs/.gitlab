@@ -1,0 +1,13 @@
+{
+  "User": {
+    "Id": 85,
+    "Username": "athena.chang81",
+    "Name": "Athena Chang Ya-Ju",
+    "Email": "athena.chang@titansoft.com.sg",
+    "AvatarUrl": "http://www.gravatar.com/avatar/d5f30b807aaf1a159e6dd7ae4365f534?s=80&d=identicon",
+    "PrivateToken": "8c5bc0a43e1fb50384547e595480421608510944dd7dd24e52f5cfbb3581352d",
+    "Host": "http://weaver.coreop.net",
+    "TwoFactorEnabled": false,
+    "ApiVersion": 3
+  }
+}
