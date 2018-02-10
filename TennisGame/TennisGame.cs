@@ -17,8 +17,12 @@ namespace TennisGame
 
         public string Score()
         {
-            if (_firstPlayerScoreTimes == _secondPlayerScoreTimes)
+            if (isSameScore())
             {
+                if (_firstPlayerScoreTimes >= 3)
+                {
+                    return "Deuce";
+                }
                 return _scoreLookup[_firstPlayerScoreTimes] + " All";
             }
             else
@@ -26,6 +30,11 @@ namespace TennisGame
                 return _scoreLookup[_firstPlayerScoreTimes] + " " + _scoreLookup[_secondPlayerScoreTimes];
             }
 
+        }
+
+        private bool isSameScore()
+        {
+            return _firstPlayerScoreTimes == _secondPlayerScoreTimes;
         }
 
         public void FirstPlayerScore()
