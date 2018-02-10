@@ -26,19 +26,19 @@ namespace TennisGame
 
         public string Score()
         {
-            if (IsSameScore())
-            {
-                if (_firstPlayerScoreTimes >= 3)
-                {
-                    return Deuce();
-                }
-                return _scoreLookup[_firstPlayerScoreTimes] + " All";
-            }
-            else
-            {
-                return IsReadyForWin() ? AdvState() : NormalScore();
-            }
+            return IsSameScore()
+                ? (IsDeuce() ? Deuce() : SameScore())
+                : (IsReadyForWin() ? AdvState() : NormalScore());
+        }
 
+        private bool IsDeuce()
+        {
+            return _firstPlayerScoreTimes >= 3;
+        }
+
+        private string SameScore()
+        {
+            return _scoreLookup[_firstPlayerScoreTimes] + " All";
         }
 
         private static string Deuce()
